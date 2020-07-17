@@ -5,12 +5,13 @@
 }
 body{
     font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background: antiquewhite!important;
 }
-
 .col1-layout{
     background: #ffffff !important;
     margin-bottom: 3rem;
     padding-top: 150px;
+    margin-bottom: 150px;
 }
 .about-title{
     margin: 3rem 0;
@@ -97,7 +98,7 @@ body{
 .email i{
     color: #c21d1b;
 }
-.btn{
+.buttom{
     min-width: 140px;
     background-image: url(./img/btn.png);
     background-color: transparent !important;
@@ -107,10 +108,15 @@ body{
     padding: 7px 15px;
     border: 0;
 }
+ .buttom:focus{
+    outline: none;
+    border: none;
+} 
 .btn span{
-    padding: 5px 30px;
+    padding: 10px 40px;
     display: block;
     text-transform: uppercase;
+    color: wheat;
 
 }
    /* start-header */
@@ -566,4 +572,12 @@ body{
             top: 60%;
         }
             /*  end-fotter */
+    }
+
+    /* map */
+    #map{
+        width: 100%;
+        float: left;
+        height: 500px;
+        border: 1px solid #ed7900
     }

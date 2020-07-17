@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="1.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./boopstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="./fontawesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="js/carousel2/css/owl.carousel.min.css">
@@ -91,7 +91,7 @@
                     </div>
             </div>
             <div class="row">
-                <div class="col-6">
+                <div class="col-xl-6 col-12">
                     <h1 class="content-title">Contact Info</h1>
                         <div class="address">
                             <i class="fas fa-map-marker-alt"></i>
@@ -110,7 +110,7 @@
                         </div>
                         <span style="margin-left: 100px; font-size: 14px;">an.nguyen@burgerkingvn.vn</span>
                 </div>
-                <div class="col-6">
+                <div class="col-xl-6 col-12">
                     <h1 class="content-title">Send us a message</h1>
                     <form action="#">
                         <div class="field">
@@ -138,13 +138,17 @@
                                 <textarea class="input-text" type="text" name="text" placeholder="Content" cols="5" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 150px;"></textarea>
                             </div>
                         </div>
-                        <button type="submit" title="submit" class="btn">
+                        <button type="submit" title="submit" class="buttom">
                             <span>submit</span>
                         </button>
                     </form>
                 </div>
             </div>
+            <div class="row">
+                <div id="map"></div>
+            </div>
         </div>
+      
     </main>
     <footer>
         <div class="footer">
@@ -266,5 +270,28 @@ $('#slider-list').owlCarousel({
 
 
 </script>
+<script>
+var uluru = {lat: 21.0288, lng: 105.7795};
+var coord = navigator.geolocation.getCurrentPosition(getLocation);
+function getLocation(position) {
+    uluru = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+    }
+    initMap();
+}
 
+function initMap() {
+    // The map, centered at Uluru
+    var map = new google.maps.Map(
+        document.getElementById('map'), {zoom: 24, center: uluru});
+    // The marker, positioned at Uluru
+    var marker = new google.maps.Marker({position: uluru, map: map,
+    label:"Đại học FPT Hà Nội"});
+}
+
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaj0mHlR-keu-9hsR6d-gB0L9BclG04rk&callback=initMap">
+</script>
 </html>
