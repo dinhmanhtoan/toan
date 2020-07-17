@@ -103,7 +103,7 @@
                             <b>phone:</b>
                             <span>(+84 8) 3521 8845</span>
                         </div>
-                        <div class="email">
+                        <div class="email1">
                             <i class="far fa-envelope"></i>
                             <b>Email:</b>
                             <span>marketing.info@burgerkingvn.vn</span>
@@ -112,14 +112,16 @@
                 </div>
                 <div class="col-xl-6 col-12">
                     <h1 class="content-title">Send us a message</h1>
-                    <form action="#">
+                    <form action="#" id="form">
                         <div class="field">
                             <label for="email" class="required">
                                 Email
-
                             </label>
                             <div class="input-box">
-                                <input class="input-text" type="email" name="email" placeholder="Email">
+                                <input class="input-text email " type="email" name="email" placeholder="Email">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <i class="fas fa-check"></i>
+                                <span class="request"></span>
                             </div>
                         </div>
                         <div class="field">
@@ -127,7 +129,10 @@
                                 Full Name
                             </label>
                             <div class="input-box">
-                                <input class="input-text" type="text" name="text" placeholder="Fullname">
+                                <input class="input-text first-name" type="text" name="text" placeholder="Fullname">
+                                <i class="fas fa-exclamation-circle" ></i>
+                                <i class="fas fa-check"></i>
+                                <span class="request"></span>
                             </div>
                         </div>
                         <div class="field">
@@ -135,7 +140,8 @@
                                 Content
                             </label>
                             <div class="input-box">
-                                <textarea class="input-text" type="text" name="text" placeholder="Content" cols="5" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 150px;"></textarea>
+                                <textarea class="input-text text" type="text" name="texts" placeholder="Content" cols="5" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 150px;"></textarea>
+                                <span class="request"></span>
                             </div>
                         </div>
                         <button type="submit" title="submit" class="buttom">
@@ -198,7 +204,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="js/jquery-3.5.1.min.js"></script>
 <script src="js/carousel2/js/owl.carousel.min.js"></script>
-
 <script>
     // header
 $('.scroll-top').click(function () {
@@ -289,7 +294,67 @@ function initMap() {
     var marker = new google.maps.Marker({position: uluru, map: map,
     label:"Đại học FPT Hà Nội"});
 }
+    
+</script>
 
+<!-- email  -->
+<script>
+ 
+    var email = $(".email");
+    var first_name = $(".first-name");
+    var text = $(".text");
+    var form = $("#form");
+    var box = $(".input-box");
+
+form.submit(function (event) {
+    event.preventDefault();
+    checkInput();
+})
+function checkInput() {
+    const emailValue = email.val().trim();
+    const first_nameValue = first_name.val().trim();
+    const formValue = text.val().trim();
+        
+    if (emailValue === "") {
+        setErrorFor(email,"yêu cầu nhập email");
+        console.log(emailValue)
+    } else if (!isEmail(emailValue)) {
+		setErrorFor(email, 'không phải là email');
+    }else{
+        setSuccessFor(email)
+    }
+    if (first_nameValue === "") {
+        setErrorFor(first_name,"yêu cầu nhập first name");
+    }else{
+        setSuccessFor(first_name)
+    }
+    if (formValue === "") {
+        setErrorFor(text,"yều cầu nhập văn bản");
+    }else{
+        setSuccessFor(text)
+    }
+}
+function setErrorFor(input,massage) {
+    const boxInput = input.parent();
+    const span = boxInput.children("span");
+    span.text(massage);
+    boxInput.addClass("error");
+    boxInput.removeClass("success");
+}
+function setSuccessFor(input) {
+    debugger;
+    const boxInput = input.parent();
+    console.log(boxInput);
+    const span = boxInput.children("span");
+    console.log(span);
+    boxInput.addClass("success");
+    boxInput.removeClass("error");
+    span.text("");
+
+}
+function isEmail(email) {
+	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+}
 </script>
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaj0mHlR-keu-9hsR6d-gB0L9BclG04rk&callback=initMap">
